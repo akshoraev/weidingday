@@ -1,0 +1,887 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.6;
+    color: #2C1810;
+    overflow-x: hidden;
+    position: relative;
+    font-size: 1.2em;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none !important;
+}
+
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+header {
+    text-align: center;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5em;
+    margin: 20px 0;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    color: #2C1810;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Добавляем стили и анимацию, когда header становится видимым */
+.header.visible h1 {
+    opacity: 1; /* Делаем видимым */
+    transform: translateY(0) scale(1); /* Возвращаем в исходное положение и размер */
+    filter: blur(0); /* Убираем размытие */
+    animation: elegantNameAppear 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; /* Запускаем анимацию */
+}
+
+@keyframes elegantNameAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+h2, .countdown, .details h2, .dresscode h2 {
+    font-family: 'Playfair Display', serif;
+    color: #2C1810;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.fade-in.visible h2 {
+    animation: elegantSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes elegantSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.invitation p, .details p, .dresscode p, .rsvp h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3em;
+    color: #2C1810;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+.fade-in.visible .invitation p {
+    animation: elegantFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fade-in.visible .invitation p:first-child {
+    animation-delay: 0.3s;
+}
+
+.fade-in.visible .invitation p:last-child {
+    animation-delay: 0.6s;
+}
+
+@keyframes elegantFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.countdown {
+    text-align: center;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 40px 0;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.countdown.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.countdown-item {
+    display: inline-block;
+    margin: 0 15px;
+    text-align: center;
+    min-width: 100px;
+    opacity: 1;
+}
+
+.countdown-item.visible {
+    animation: elegantCountdownAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.countdown-item:nth-child(1) { animation-delay: 0.1s; }
+.countdown-item:nth-child(2) { animation-delay: 0.2s; }
+.countdown-item:nth-child(3) { animation-delay: 0.3s; }
+.countdown-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes elegantCountdownAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.countdown-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #2C1810;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.countdown-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2em;
+    color: #2C1810;
+    text-transform: lowercase;
+}
+
+.map-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #2C1810;
+    color: #F5F5F5;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1em;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.map-button.visible {
+    animation: elegantButtonAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.map-button:hover {
+    background-color: #1A0F0A;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.color-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.color-circle.visible {
+    animation: elegantCircleAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.color-circle:nth-child(1) { animation-delay: 0.2s; }
+.color-circle:nth-child(2) { animation-delay: 0.4s; }
+.color-circle:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes elegantCircleAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.color-circle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: silkShine 3s infinite linear;
+}
+
+@keyframes silkShine {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+.color-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.rsvp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    width: 100%;
+    max-width: 400px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rsvp.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.rsvp input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #2C1810;
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    text-align: center;
+    color: #2C1810;
+    opacity: 1;
+}
+
+.rsvp input.visible {
+    animation: elegantInputAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.rsvp input:focus {
+    outline: none;
+    border-bottom: 2px solid #2C1810;
+}
+
+.rsvp-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    opacity: 1;
+}
+
+.rsvp-buttons.visible {
+    animation: elegantButtonsAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.rsvp-buttons button {
+    padding: 12px 35px;
+    border: 1px solid #2C1810;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+    background: transparent;
+    color: #2C1810;
+}
+
+.rsvp-buttons button:first-child:hover {
+    background-color: #2C1810;
+    color: #F5F5F5;
+    border-color: #2C1810;
+}
+
+.rsvp-buttons button:last-child:hover {
+    background-color: #2C1810;
+    color: #F5F5F5;
+    border-color: #2C1810;
+}
+
+@keyframes elegantInputAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes elegantButtonsAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2.8em;
+        padding: 0 20px;
+    }
+
+    section {
+        padding: 20px;
+        margin: 30px 0;
+    }
+
+    .details p {
+        font-size: 1.2em;
+    }
+
+    .countdown-item {
+        min-width: 70px;
+        margin: 0 5px;
+    }
+
+    .countdown-number {
+        font-size: 1.8em;
+    }
+
+    .rsvp {
+        padding: 0 20px;
+    }
+
+    .rsvp-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rsvp-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.3em;
+    }
+
+    .details p {
+        font-size: 1.1em;
+    }
+
+    .countdown-item {
+        min-width: 60px;
+    }
+
+    .countdown-number {
+        font-size: 1.5em;
+    }
+}
+
+.invitation {
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.invitation p {
+    margin: 20px 0;
+    line-height: 1.8;
+    font-size: 1.4em;
+    color: #2C1810;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.invitation p.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.invitation p:first-child {
+    font-size: 1.6em;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+@keyframes elegantFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.invitation p span {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: popIn 0.4s forwards;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.invitation p.typing {
+    border-right: 2px solid #4A2C2A;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #4A2C2A; }
+}
+
+.dresscode .color-circle:nth-child(1) {
+    background-color: #2C1810;
+}
+
+.dresscode .color-circle:nth-child(2) {
+    background-color: #800020;
+}
+
+.dresscode .color-circle:nth-child(3) {
+    background-color: #0B3D2F;
+}
+
+section {
+    margin: 50px 0;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: none;
+}
+
+.fade-in.visible {
+    animation: elegantFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.details.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.details p {
+    margin: 5px 0;
+    font-size: 1.3em;
+}
+
+/* Стили для конверта */
+.envelope-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f0e4d6 0%, #e6d8cb 100%); /* Светлый текстурный фон */
+    z-index: 1000;
+    transition: opacity 1s ease-out;
+}
+
+.envelope-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.envelope {
+    position: relative;
+    width: 500px;
+    height: 300px; /* Скорректированный размер */
+    cursor: pointer;
+    transform-style: preserve-3d; /* Сохраняем 3D для перспективы */
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); /* Анимация открытия клапана */
+    perspective: 1000px; /* Уменьшим перспективу */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Более мягкая тень */
+    border-radius: 15px; /* Немного скруглим края */
+    background-color: #f0e4d6; /* Основной цвет конверта */
+}
+
+.envelope.opened {
+    /* Нет полного переворота, только открывается клапан */
+    transform: none; /* Сбросим трансформацию конверта */
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f0e4d6; /* Светлый цвет */
+    border-radius: 15px; /* Соответствие конверту */
+    overflow: hidden; /* Для содержимого */
+    backface-visibility: hidden;
+    z-index: 1; /* На переднем плане */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Добавим легкую текстуру */
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
+    background-repeat: repeat;
+    background-size: 50px; /* Размер текстуры */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Внутренняя тень */
+}
+
+/* Убираем ::after для текстуры с передней стороны */
+.envelope-front::after {
+    content: none;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0; /* Прикрепляем сверху */
+    left: 0;
+    width: 100%;
+    height: 150px; /* Высота клапана */
+    background-color: #f0e4d6; /* Светлый цвет */
+    transform-origin: top; /* Вращение от верхнего края */
+    transition: transform 1s ease-in-out; /* Более плавная анимация */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 30px), 0 100%); /* Форма клапана */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Тень клапана */
+    backface-visibility: hidden;
+    z-index: 3; /* Над передней частью */
+    /* Добавим легкую текстуру */
+    background-image: url('data:image/png;base64,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');
+    background-repeat: repeat;
+    background-size: 50px;
+}
+
+/* Убираем ::after для текстуры с клапана */
+.envelope-flap::after {
+    content: none;
+}
+
+.envelope.opened .envelope-flap {
+    transform: rotateX(180deg); /* Анимация открытия клапана */
+}
+
+.envelope-pocket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e6d8cb; /* Чуть темнее для глубины */
+    border-radius: 15px; /* Соответствие конверту */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15); /* Внутренняя тень */
+    backface-visibility: hidden;
+    z-index: 0; /* Позади передней части и клапана */
+    /* Добавим легкую текстуру */
+    background-image: url('data:image/png;base64,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');
+    background-repeat: repeat;
+    background-size: 50px;
+}
+
+.envelope-letter {
+    position: absolute;
+    top: 0; /* Находится внутри конверта */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%); /* Цвет бумаги письма */
+    border-radius: 15px; /* Соответствие конверту */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Тень письма */
+    backface-visibility: hidden;
+    z-index: 1; /* Между pocket и flap */
+    transform: translateY(30px); /* Изначально немного смещено вниз */
+    opacity: 0;
+    transition: all 0.8s ease-out; /* Анимация появления письма */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.envelope.opened .envelope-letter {
+    transform: translateY(0); /* Появляется при открытии */
+    opacity: 1;
+    transition-delay: 0.5s; /* Задержка появления после открытия клапана */
+}
+
+.letter-content {
+    /* Стили для содержимого письма */
+    opacity: 1; /* Всегда видимо внутри письма */
+    transform: none; /* Сбросим трансформацию */
+    transition: none; /* Уберем анимацию из letter-content */
+}
+
+.letter-content h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #2C1810; /* Цвет текста */
+    margin-bottom: 20px; /* Уменьшим отступ */
+    font-size: 3em; /* Уменьшим размер */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    letter-spacing: 1px; /* Уменьшим интервал */
+}
+
+.letter-content p {
+    font-family: 'Great Vibes', cursive;
+    color: #2C1810; /* Цвет текста */
+    font-size: 1.5em; /* Уменьшим размер */
+    line-height: 1.5; /* Уменьшим межстрочный интервал */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для надписи на конверте */
+.envelope-front .invitation-text {
+    font-family: 'Great Vibes', cursive;
+    color: #696969;
+    font-size: 4.2em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 4px;
+    position: absolute;
+    top: 55%; /* Опустим еще чуть чуть вниз */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    animation: none;
+}
+
+@keyframes goldenGlow {
+    /* Удаляем правило @keyframes */
+}
+
+/* Убираем анимацию блеска и пульсации */
+.envelope-front::before {
+    content: none;
+}
+
+.envelope {
+    animation: none;
+}
+
+@media (max-width: 768px) {
+    .envelope {
+        width: 400px;
+        height: 250px;
+    }
+    
+    .envelope-flap {
+        height: 120px;
+    }
+    
+    .letter-content h2 {
+        font-size: 2.5em;
+    }
+    
+    .letter-content p {
+        font-size: 1.4em;
+    }
+    
+    .envelope-front .invitation-text {
+        font-size: 3.2em;
+        top: 55%; /* Опустим еще чуть чуть вниз для планшетов */
+    }
+}
+
+@media (max-width: 480px) {
+    .envelope {
+        width: 300px;
+        height: 200px; /* Скорректированный размер */
+    }
+    
+    .envelope-flap {
+        height: 100px; /* Скорректированная высота клапана */
+    }
+    
+    .letter-content h2 {
+        font-size: 2em;
+    }
+    
+    .letter-content p {
+        font-size: 1.2em;
+    }
+    
+    .envelope-front .invitation-text {
+        font-size: 2.7em;
+        top: 55%; /* Опустим еще чуть чуть вниз для мобильных */
+    }
+}
+
+/* Стили для футера */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 0.8em; /* Маленький размер шрифта */
+    color: #A9A9A9; /* Ненавязчивый цвет */
+    width: 100%; /* Занимает всю ширину */
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 0; /* Прижимаем к низу */
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
+
+.copyright-symbol {
+    display: inline-block;
+    width: 1.2em; /* Размер кружка */
+    height: 1.2em;
+    border: 1px solid #A9A9A9;
+    border-radius: 50%; /* Делаем кружок */
+    text-align: center;
+    line-height: 1.1em; /* Центрируем символ вертикально */
+    margin-right: 5px; /* Отступ справа от символа */
+    font-size: 0.9em; /* Размер символа внутри кружка */
+}
+
+footer a {
+    color: #A9A9A9; /* Тот же цвет для ссылки */
+    text-decoration: none;
+    border-bottom: 1px dotted #A9A9A9; /* Пунктирное подчеркивание при наведении */
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2C1810; /* Цвет при наведении */
+    border-bottom-color: #2C1810;
+} 

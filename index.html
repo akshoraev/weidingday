@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадебное приглашение</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="envelope-container">
+        <div class="envelope">
+            <div class="envelope-front">
+                <div class="envelope-flap"></div>
+                <div class="envelope-pocket"></div>
+                <div class="invitation-text">Приглашение</div>
+            </div>
+            <div class="ribbon"></div>
+            <div class="envelope-letter">
+                <div class="letter-content">
+                    <h2></h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" style="display: none;">
+        <video class="video-bg" src="White_Fabric_Wind_Free_Background_Videos,_Motion_Graphics,_No_Copyright.mp4" autoplay loop muted playsinline></video>
+        
+        <div class="container">
+            <header class="fade-in">
+                <h1>Даниил & Валерия</h1>
+            </header>
+
+            <section class="invitation fade-in">
+                <p>Дорогие гости!</p>
+                <p>Мы верим, что этот день станет красивым началом нашей счастливой совместной жизни. Мы хотим оказаться в окружении самых близких и дорогих для нас людей, искренне и от всей души будем рады видеть вас среди гостей на нашей свадьбе.</p>
+            </section>
+
+            <section class="countdown fade-in">
+                <div id="timer"></div>
+            </section>
+
+            <section class="details fade-in">
+                <h2>26.07.2025</h2>
+                <p>Начало в 18:00</p>
+                <p>город Тараз, ресторан "АТРИУМ"</p>
+                <p>Жансугурова 2А</p>
+                <a href="https://2gis.kz/taraz/geo/70000001051565781" class="map-button" target="_blank">Как проехать</a>
+            </section>
+
+            <section class="dresscode fade-in">
+                <h2>Дресс-код</h2>
+                <p>Просим поддержать палитру нашей свадьбы в своих нарядах:</p>
+                <div class="color-palette">
+                    <div class="color-circle"></div>
+                    <div class="color-circle"></div>
+                    <div class="color-circle"></div>
+                </div>
+            </section>
+
+            <section class="rsvp fade-in">
+                <h2>Вы придете на свадьбу?</h2>
+                <input type="text" placeholder="Ваше имя" id="guestName">
+                <div class="rsvp-buttons">
+                    <button onclick="respond(true)">Да</button>
+                    <button onclick="respond(false)">Нет</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <p><span class="copyright-symbol">&copy;</span> <a href="https://wa.me/+77713995468" target="_blank">+7 771 399 5468</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html> 
