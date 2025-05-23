@@ -97,7 +97,7 @@ function updateCountdown() {
 function respond(isComing) {
     const name = document.getElementById('guestName').value;
     const botToken = '7102104604:AAG_iNKoOTqbXFN5PGS0aWcf2jM6hXIQWc8'; // Ваш токен бота
-    const chatId = '664244150'; // Новый Chat ID
+    const chatId = '526100645'; // Новый Chat ID
 
     if (!name) {
         alert('Пожалуйста, введите ваше имя');
@@ -107,21 +107,32 @@ function respond(isComing) {
     const status = isComing ? 'Придет' : 'Не придет';
     const messageText = `Новый ответ на приглашение:\nИмя: ${name}\nСтатус: ${status}`;
 
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}`;
-
-    fetch(url)
+    const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: messageText
+        })
+    })
     .then(response => {
-        if (!response.ok) {
-            // Можно добавить более детальную обработку ошибок
-            console.error('Ошибка при отправке сообщения в Telegram:', response.statusText);
+        console.log('Ответ от сервера:', response);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Данные ответа:', data);
+        if (!data.ok) {
+            console.error('Ошибка Telegram API:', data);
             alert('Произошла ошибка при отправке вашего ответа.');
         } else {
-            // Успешная отправка
             const thankYouMessage = isComing
                 ? `Спасибо, ${name}! Мы будем рады видеть вас на нашей свадьбе!`
                 : `Спасибо за ответ, ${name}. Жаль, что вы не сможете присутствовать.`;
-            alert(thankYouMessage); // Можно заменить на более элегантное уведомление
-            // Очистить поле ввода после успешной отправки
+            alert(thankYouMessage);
             document.getElementById('guestName').value = '';
         }
     })
