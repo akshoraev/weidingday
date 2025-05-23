@@ -97,7 +97,7 @@ function updateCountdown() {
 function respond(isComing) {
     const name = document.getElementById('guestName').value;
     const botToken = '7102104604:AAG_iNKoOTqbXFN5PGS0aWcf2jM6hXIQWc8'; // Ваш токен бота
-    const chatId = '526100645'; // Ваш Chat ID
+    const chatId = '526100645'; // Новый Chat ID
 
     if (!name) {
         alert('Пожалуйста, введите ваше имя');
@@ -107,18 +107,9 @@ function respond(isComing) {
     const status = isComing ? 'Придет' : 'Не придет';
     const messageText = `Новый ответ на приглашение:\nИмя: ${name}\nСтатус: ${status}`;
 
-    const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}`;
 
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: messageText
-        })
-    })
+    fetch(url)
     .then(response => {
         if (!response.ok) {
             // Можно добавить более детальную обработку ошибок
