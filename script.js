@@ -107,38 +107,48 @@ function respond(isComing) {
     const status = isComing ? 'Придет' : 'Не придет';
     const messageText = `Новый ответ на приглашение:\nИмя: ${name}\nСтатус: ${status}`;
 
+    // Проверяем токен бота
+    console.log('Используемый токен бота:', botToken);
+    console.log('Используемый chat_id:', chatId);
+
     const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     
     fetch(apiUrl, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         },
         body: JSON.stringify({
             chat_id: chatId,
-            text: messageText
+            text: messageText,
+            parse_mode: 'HTML'
         })
     })
-    .then(response => {
-        console.log('Ответ от сервера:', response);
-        return response.json();
+    .then(async response => {
+        console.log('Статус ответа:', response.status);
+        const data = await response.json();
+        console.log('Полный ответ от API:', data);
+        
+        if (!data.ok) {
+            console.error('Детали ошибки:', {
+                error_code: data.error_code,
+                description: data.description
+            });
+            throw new Error(data.description || 'Ошибка при отправке сообщения');
+        }
+        return data;
     })
     .then(data => {
-        console.log('Данные ответа:', data);
-        if (!data.ok) {
-            console.error('Ошибка Telegram API:', data);
-            alert('Произошла ошибка при отправке вашего ответа.');
-        } else {
-            const thankYouMessage = isComing
-                ? `Спасибо, ${name}! Мы будем рады видеть вас на нашей свадьбе!`
-                : `Спасибо за ответ, ${name}. Жаль, что вы не сможете присутствовать.`;
-            alert(thankYouMessage);
-            document.getElementById('guestName').value = '';
-        }
+        const thankYouMessage = isComing
+            ? `Спасибо, ${name}! Мы будем рады видеть вас на нашей свадьбе!`
+            : `Спасибо за ответ, ${name}. Жаль, что вы не сможете присутствовать.`;
+        alert(thankYouMessage);
+        document.getElementById('guestName').value = '';
     })
     .catch(error => {
-        console.error('Ошибка сети или другая ошибка:', error);
-        alert('Произошла ошибка при отправке вашего ответа.');
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при отправке вашего ответа. Пожалуйста, попробуйте позже.');
     });
 }
 
