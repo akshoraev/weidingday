@@ -97,7 +97,7 @@ function updateCountdown() {
 function respond(isComing) {
     const name = document.getElementById('guestName').value;
     const botToken = '7102104604:AAG_iNKoOTqbXFN5PGS0aWcf2jM6hXIQWc8'; // Ваш токен бота
-    const chatId = '526100645'; // Новый Chat ID
+    const chatId = '664244150'; // Новый Chat ID
 
     if (!name) {
         alert('Пожалуйста, введите ваше имя');
